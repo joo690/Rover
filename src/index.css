@@ -1,0 +1,333 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* your base styles */
+}
+
+@layer base {
+  :root {
+    /* EcoRover Dark Tech Theme */
+    --background: 220 20% 4%;
+    --foreground: 210 20% 95%;
+
+    --card: 220 18% 8%;
+    --card-foreground: 210 20% 95%;
+
+    --popover: 220 18% 8%;
+    --popover-foreground: 210 20% 95%;
+
+    /* Eco Green - Primary */
+    --primary: 142 71% 45%;
+    --primary-foreground: 220 20% 4%;
+
+    /* Secondary - Muted surface */
+    --secondary: 220 15% 12%;
+    --secondary-foreground: 210 20% 85%;
+
+    --muted: 220 15% 15%;
+    --muted-foreground: 215 15% 55%;
+
+    /* Accent - Cyan/AI */
+    --accent: 186 94% 42%;
+    --accent-foreground: 220 20% 4%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 220 15% 18%;
+    --input: 220 15% 15%;
+    --ring: 142 71% 45%;
+
+    --radius: 0.75rem;
+
+    /* Custom EcoRover tokens */
+    --eco-green: 142 71% 45%;
+    --eco-green-glow: 142 71% 55%;
+    --solar-amber: 38 92% 50%;
+    --solar-amber-glow: 38 92% 60%;
+    --ai-cyan: 186 94% 42%;
+    --ai-cyan-glow: 186 94% 55%;
+    --alert-red: 0 72% 51%;
+    --alert-amber: 38 92% 50%;
+
+    --surface-elevated: 220 18% 10%;
+    --surface-overlay: 220 18% 6%;
+
+    /* Gradients */
+    --gradient-eco: linear-gradient(135deg, hsl(142 71% 45%), hsl(160 70% 40%));
+    --gradient-solar: linear-gradient(135deg, hsl(38 92% 50%), hsl(25 95% 53%));
+    --gradient-ai: linear-gradient(135deg, hsl(186 94% 42%), hsl(200 90% 50%));
+    --gradient-dark: linear-gradient(180deg, hsl(220 18% 10%), hsl(220 20% 4%));
+
+    /* Shadows */
+    --shadow-eco: 0 0 30px -5px hsl(142 71% 45% / 0.3);
+    --shadow-glow: 0 0 40px -10px hsl(142 71% 45% / 0.4);
+    --shadow-card: 0 4px 20px -5px hsl(0 0% 0% / 0.5);
+
+    /* Sidebar */
+    --sidebar-background: 220 18% 6%;
+    --sidebar-foreground: 210 20% 85%;
+    --sidebar-primary: 142 71% 45%;
+    --sidebar-primary-foreground: 220 20% 4%;
+    --sidebar-accent: 220 15% 12%;
+    --sidebar-accent-foreground: 210 20% 95%;
+    --sidebar-border: 220 15% 15%;
+    --sidebar-ring: 142 71% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-surface-overlay rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/30 rounded-full hover:bg-muted-foreground/50;
+  }
+}
+
+@layer components {
+  /* Glow effects */
+  .glow-eco {
+    box-shadow: 0 0 30px -5px hsl(var(--eco-green) / 0.4);
+  }
+
+  .glow-solar {
+    box-shadow: 0 0 30px -5px hsl(var(--solar-amber) / 0.4);
+  }
+
+  .glow-ai {
+    box-shadow: 0 0 30px -5px hsl(var(--ai-cyan) / 0.4);
+  }
+
+  .glow-alert {
+    box-shadow: 0 0 30px -5px hsl(var(--alert-red) / 0.5);
+  }
+
+  /* Card variants */
+  .card-eco {
+    @apply bg-card rounded-xl;
+    border: 1px solid hsl(var(--eco-green) / 0.2);
+    box-shadow: 0 0 40px -15px hsl(var(--eco-green) / 0.2);
+  }
+
+  .card-surface {
+    @apply bg-secondary/50 backdrop-blur-sm border border-border rounded-xl;
+  }
+
+  /* Data display */
+  .data-value {
+    @apply font-mono text-3xl font-bold tracking-tight;
+  }
+
+  .data-label {
+    @apply text-xs uppercase tracking-widest text-muted-foreground;
+  }
+
+  /* Pulse animations */
+  @keyframes pulse-eco {
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.6;
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      box-shadow: 0 0 20px -5px hsl(var(--eco-green) / 0.4);
+    }
+
+    50% {
+      box-shadow: 0 0 40px -5px hsl(var(--eco-green) / 0.6);
+    }
+  }
+
+  .animate-pulse-eco {
+    animation: pulse-eco 2s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Status indicators */
+  .status-online {
+    @apply w-2 h-2 rounded-full bg-eco-green;
+    box-shadow: 0 0 10px hsl(var(--eco-green) / 0.8);
+  }
+
+  .status-warning {
+    @apply w-2 h-2 rounded-full bg-solar-amber;
+    box-shadow: 0 0 10px hsl(var(--solar-amber) / 0.8);
+  }
+
+  .status-offline {
+    @apply w-2 h-2 rounded-full bg-alert-red;
+    box-shadow: 0 0 10px hsl(var(--alert-red) / 0.8);
+  }
+
+  /* Gauge styling */
+  .gauge-ring {
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s ease-out;
+  }
+
+  /* Grid pattern background */
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.3) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Liquid fill animation */
+  @keyframes liquid-wave {
+    0%,
+    100% {
+      transform: translateX(0) translateY(0);
+    }
+
+    25% {
+      transform: translateX(-5px) translateY(-2px);
+    }
+
+    50% {
+      transform: translateX(0) translateY(-4px);
+    }
+
+    75% {
+      transform: translateX(5px) translateY(-2px);
+    }
+  }
+
+  .animate-liquid {
+    animation: liquid-wave 3s ease-in-out infinite;
+  }
+
+  /* Scan line effect */
+  @keyframes scan-line {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+
+    50% {
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateY(100vh);
+      opacity: 0;
+    }
+  }
+
+  .scan-line {
+    @apply absolute left-0 right-0 h-px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      hsl(var(--eco-green)),
+      transparent
+    );
+    animation: scan-line 4s linear infinite;
+  }
+
+  /* Number counter animation */
+  @keyframes count-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-count {
+    animation: count-up 0.5s ease-out;
+  }
+}
+
+@layer utilities {
+  .bg-eco-green {
+    background-color: hsl(var(--eco-green));
+  }
+
+  .bg-solar-amber {
+    background-color: hsl(var(--solar-amber));
+  }
+
+  .bg-ai-cyan {
+    background-color: hsl(var(--ai-cyan));
+  }
+
+  .bg-alert-red {
+    background-color: hsl(var(--alert-red));
+  }
+
+  .bg-surface-elevated {
+    background-color: hsl(var(--surface-elevated));
+  }
+
+  .bg-surface-overlay {
+    background-color: hsl(var(--surface-overlay));
+  }
+
+  .text-eco-green {
+    color: hsl(var(--eco-green));
+  }
+
+  .text-solar-amber {
+    color: hsl(var(--solar-amber));
+  }
+
+  .text-ai-cyan {
+    color: hsl(var(--ai-cyan));
+  }
+
+  .text-alert-red {
+    color: hsl(var(--alert-red));
+  }
+
+  .border-eco-green {
+    border-color: hsl(var(--eco-green));
+  }
+
+  .border-solar-amber {
+    border-color: hsl(var(--solar-amber));
+  }
+
+  .border-ai-cyan {
+    border-color: hsl(var(--ai-cyan));
+  }
+
+  .font-mono {
+    font-family: "JetBrains Mono", monospace;
+  }
+}
